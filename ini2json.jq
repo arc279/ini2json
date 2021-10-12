@@ -14,7 +14,7 @@ def formatSection:
   if startswith("[") and endswith("]") then
     ["\f", .]|join("")  # separator + section name
   else
-    .|gsub(" = "; "=")  # section values
+    .|gsub("\\s*=\\s*"; "=")  # section values
   end
 ;
 
