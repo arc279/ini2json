@@ -1,7 +1,7 @@
 #!/usr/bin/env jq -Rs -f
 
 def sectionToEntry:
-  split("\n")[:-1]
+  split("\n")
     | map(select(length>0))
     | {
       (.[0]): .[1:] | map(
@@ -23,3 +23,4 @@ split("\n")
 | join("\n")
 | split("\f")
 | map(select(length > 0) | sectionToEntry)
+| reduce .[] as $x ({}; . + $x)
