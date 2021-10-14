@@ -18,7 +18,7 @@ def formatSection:
   end
 ;
 
-split("\n")[:-1]
+split("\n")
 | map(formatSection)
 | join("\n")
 | split("\f")
