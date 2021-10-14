@@ -19,8 +19,9 @@ def formatSection:
 ;
 
 split("\n")
-| map(formatSection)
+| ["\fglobal", .[]|formatSection]
 | join("\n")
 | split("\f")
 | map(select(length > 0) | sectionToEntry)
 | reduce .[] as $x ({}; . + $x)
+| if .global == {} then del(.global) else . end
